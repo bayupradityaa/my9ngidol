@@ -4,7 +4,6 @@ import { Menu, X, Grid3x3 } from 'lucide-react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import LanguageSwitcher from './LanguageSwitcher.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
-import NeoButton from './NeoButton.jsx'
 
 export default function Navbar() {
   const { t } = useLanguage()
@@ -55,9 +54,6 @@ export default function Navbar() {
         <div className="hidden items-center gap-2 md:flex">
           <LanguageSwitcher />
           <ThemeToggle />
-          <NeoButton to="/create" variant="red" size="sm" magnetic={true}>
-            {t('nav.cta')}
-          </NeoButton>
         </div>
 
         {/* Mobile toggle */}
@@ -103,9 +99,6 @@ export default function Navbar() {
             ))}
             <div className="mt-2 flex items-center justify-between gap-2">
               <LanguageSwitcher />
-              <NeoButton to="/create" variant="red" size="sm" onClick={() => setOpen(false)}>
-                {t('nav.cta')}
-              </NeoButton>
             </div>
           </div>
         </div>
