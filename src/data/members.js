@@ -44,8 +44,7 @@ const PALETTE = [
 ]
 
 const roster = [
-  // ---- Team Love (15 names listed) ----
-  ['alya-amanda', 'Alya Amanda', 'love'],
+  // ---- Team Love (14 members) ----
   ['anindya-ramadhani', 'Anindya Ramadhani', 'love'],
   ['aurellia', 'Aurellia', 'love'],
   ['aurhel-alana', 'Aurhel Alana', 'love'],
