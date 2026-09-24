@@ -25,6 +25,14 @@ export const dict = {
       exampleLabel: 'CONTOH',
       caption: 'Sembilan oshi. Sepotong dirimu.',
       downloadsLabel: 'formasi sudah dibuat',
+      setlistTitleHi: '9 Setlist',
+      setlistSubtitle:
+        'Selain 9 oshi, susun 9 lagu setlist JKT48 paling berkesan dalam hidupmu jadi satu gambar untuk dibagikan.',
+      setlistCtaPrimary: 'Jelajahi 9 Setlist',
+      setlistCtaSecondary: 'Nantikan rilis — Lihat teaser',
+      setlistCaption: 'Sembilan lagu setlist favoritmu. Segera hadir.',
+      tabOshi: '9 Oshi',
+      tabSetlist: '9 Setlist (Segera)',
     },
     how: {
       title: 'Cara kerjanya',
@@ -203,6 +211,14 @@ export const dict = {
       exampleLabel: 'EXAMPLE',
       caption: 'Nine oshi. A little piece of you.',
       downloadsLabel: 'formations created',
+      setlistTitleHi: '9 Setlist',
+      setlistSubtitle:
+        'Besides your 9 oshi, arrange your 9 most memorable JKT48 setlist tracks into one shareable image.',
+      setlistCtaPrimary: 'Explore 9 Setlist',
+      setlistCtaSecondary: 'Coming soon — View teaser',
+      setlistCaption: 'Nine favorite setlist tracks. Coming soon.',
+      tabOshi: '9 Oshi',
+      tabSetlist: '9 Setlist (Soon)',
     },
     how: {
       title: 'How it works',

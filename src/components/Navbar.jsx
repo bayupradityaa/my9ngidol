@@ -55,7 +55,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-2 md:flex">
           <LanguageSwitcher />
           <ThemeToggle />
-          <NeoButton to="/create" variant="red" size="sm">
+          <NeoButton to="/create" variant="red" size="sm" magnetic={true}>
             {t('nav.cta')}
           </NeoButton>
         </div>
@@ -75,9 +75,15 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu with crisp slide-down */}
       {open && (
-        <div className="border-t-[3px] border-black px-4 py-4 md:hidden" style={{ backgroundColor: 'var(--neo-surface)' }}>
+        <div
+          className="border-t-[3px] border-black px-4 py-4 md:hidden transition-all duration-200"
+          style={{
+            backgroundColor: 'var(--neo-surface)',
+            animation: 'nav-slide-down 200ms var(--ease-reveal) forwards',
+          }}
+        >
           <div className="flex flex-col gap-2">
             {links.map((l) => (
               <NavLink
@@ -104,6 +110,12 @@ export default function Navbar() {
           </div>
         </div>
       )}
+      <style>{`
+        @keyframes nav-slide-down {
+          0% { opacity: 0; transform: translateY(-8px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </header>
   )
 }

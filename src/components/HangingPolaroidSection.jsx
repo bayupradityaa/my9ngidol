@@ -14,6 +14,7 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
 import NeoButton from './NeoButton.jsx'
 import { members } from '../data/members.js'
 import { MemberAvatar } from './MemberCard.jsx'
+import Reveal from '../motion/Reveal.jsx'
 
 // Sample 9 members for the 9-Oshi PNG preview
 const SAMPLE_MEMBERS = members.slice(0, 9)
@@ -67,7 +68,7 @@ export default function HangingPolaroidSection() {
 
       <div className="relative mx-auto max-w-6xl px-4">
         {/* Section Header */}
-        <div className="mb-10 text-center">
+        <Reveal variant="fade-up" duration={400} className="mb-10 text-center">
           <span className="neo-border neo-tag bg-neo-yellow text-xs font-bold uppercase tracking-widest text-black shadow-[2px_2px_0_0_#000]">
             {t('finalCta.tag') || 'KREASI FORMAT PNG • SHAREABLE'}
           </span>
@@ -103,7 +104,7 @@ export default function HangingPolaroidSection() {
               {t('finalCta.setlistTab') || '2. 9 Setlist (Segera)'}
             </button>
           </div>
-        </div>
+        </Reveal>
 
         {/* Clothesline / Hanging Wire Across Top (Desktop) */}
         <div className="relative mx-auto mb-1 hidden w-full max-w-4xl items-center justify-center md:flex">
@@ -163,7 +164,7 @@ export default function HangingPolaroidSection() {
                 {/* Inner simulated PNG header */}
                 <div className="mb-2 flex items-center justify-between border-b-2 border-black pb-1.5">
                   <span className="font-display text-sm leading-none tracking-tight text-black">
-                    My 9 Ngidol
+                    My 9 Member
                   </span>
                   <span className="border-2 border-black bg-black px-2 py-0.5 text-[9px] font-bold text-white">
                     MY 9 OSHI
@@ -227,10 +228,11 @@ export default function HangingPolaroidSection() {
                     to="/create"
                     variant="red"
                     size="md"
+                    magnetic={true}
                     className="w-full justify-center text-sm shadow-[4px_4px_0_0_#000]"
                   >
                     {t('finalCta.button')}
-                    <ArrowRight size={16} strokeWidth={3} />
+                    <ArrowRight size={16} strokeWidth={3} className="transition-transform duration-200 group-hover:translate-x-1" />
                   </NeoButton>
                   <Link
                     to="/rankings"
@@ -351,10 +353,11 @@ export default function HangingPolaroidSection() {
                     to="/setlist"
                     variant="paper"
                     size="md"
+                    magnetic={true}
                     className="w-full justify-center text-sm shadow-[4px_4px_0_0_#000]"
                   >
                     {t('setlist.cta')}
-                    <ArrowRight size={16} strokeWidth={3} />
+                    <ArrowRight size={16} strokeWidth={3} className="transition-transform duration-200 group-hover:translate-x-1" />
                   </NeoButton>
                   <span className="inline-flex items-center justify-center gap-1 text-center text-xs font-bold text-black/70">
                     <Sparkles size={12} strokeWidth={2.5} />

@@ -7,7 +7,7 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
 const LINE = '#000000'
 const CENTER_INDEX = 4
 
-const NineGrid = forwardRef(function NineGrid({ picks = [], title }, ref) {
+const NineGrid = forwardRef(function NineGrid({ picks = [], title, brandTitle = 'My 9 Member' }, ref) {
   const { t } = useLanguage()
   const slots = Array.from({ length: 9 }, (_, i) => picks[i] || null)
   const heading = title || 'MY 9 OSHI'
@@ -27,7 +27,7 @@ const NineGrid = forwardRef(function NineGrid({ picks = [], title }, ref) {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
         <span style={{ fontFamily: '"Archivo Black", sans-serif', fontSize: '20px', letterSpacing: '-0.5px' }}>
-          My 9 Ngidol
+          {brandTitle}
         </span>
         <span
           style={{

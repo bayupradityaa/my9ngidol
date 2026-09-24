@@ -28,6 +28,17 @@
   --neo-fg: #000000;
   --neo-surface: #ffffff;
   --neo-muted: #f2f1ea;
+
+  /* ---- Awwwards-Level Motion Tokens ---- */
+  --ease-tactile: cubic-bezier(0.2, 0, 0, 1);
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-display: cubic-bezier(0.25, 1, 0.5, 1);
+
+  --duration-micro: 140ms;
+  --duration-interaction: 220ms;
+  --duration-content: 420ms;
+  --duration-display: 700ms;
 }
 .dark {
   --neo-bg: #17161d;
@@ -63,6 +74,15 @@ h1, h2, h3, .font-display { font-family: var(--font-display); font-weight: 900; 
   background-color: var(--neo-surface);
 }
 
+.neo-card-hover {
+  transition: transform var(--duration-interaction) var(--ease-tactile),
+              box-shadow var(--duration-interaction) var(--ease-tactile);
+}
+.neo-card-hover:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 0 var(--neo-shadow);
+}
+
 .neo-btn {
   display: inline-flex;
   align-items: center;
@@ -78,16 +98,39 @@ h1, h2, h3, .font-display { font-family: var(--font-display); font-weight: 900; 
   color: var(--neo-fg);
   text-decoration: none;
   cursor: pointer;
-  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+  transition: transform var(--duration-interaction) var(--ease-tactile),
+              box-shadow var(--duration-interaction) var(--ease-tactile),
+              background-color 0.15s ease;
 }
-.neo-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 0 var(--neo-shadow); }
-.neo-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 0 var(--neo-shadow); }
-.neo-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: var(--neo-shadow-off) var(--neo-shadow-off) 0 0 var(--neo-shadow); }
+.neo-btn:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 0 var(--neo-shadow);
+}
+.neo-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 0 var(--neo-shadow);
+}
+.neo-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--neo-shadow-off) var(--neo-shadow-off) 0 0 var(--neo-shadow);
+}
 
 /* Press animation for any bordered/shadowed interactive element */
-.neo-press { transition: transform 0.12s ease, box-shadow 0.12s ease; cursor: pointer; }
-.neo-press:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 0 var(--neo-shadow); }
-.neo-press:active { transform: translate(2px, 2px); box-shadow: 0 0 0 0 var(--neo-shadow); }
+.neo-press {
+  transition: transform var(--duration-micro) var(--ease-tactile),
+              box-shadow var(--duration-micro) var(--ease-tactile);
+  cursor: pointer;
+}
+.neo-press:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--neo-shadow);
+}
+.neo-press:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 0 var(--neo-shadow);
+}
 
 /* Rotated sticker label */
 .neo-tag {
@@ -96,6 +139,10 @@ h1, h2, h3, .font-display { font-family: var(--font-display); font-weight: 900; 
   padding: 0.15rem 0.6rem;
   font-weight: 700;
   transform: rotate(-2deg);
+  transition: transform var(--duration-interaction) var(--ease-spring);
+}
+.neo-tag:hover {
+  transform: rotate(0deg) scale(1.02);
 }
 
 /* Dotted backdrop for hero (flat, no gradient) */
@@ -105,14 +152,125 @@ h1, h2, h3, .font-display { font-family: var(--font-display); font-weight: 900; 
   opacity: 0.12;
 }
 
-@keyframes neo-float {
-  0%, 100% { transform: translateY(0) rotate(-3deg); }
-  50% { transform: translateY(-10px) rotate(3deg); }
+/* ---- Marquee Animation ---- */
+@keyframes marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
-.neo-float { animation: neo-float 5s ease-in-out infinite; }
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marquee 30s linear infinite;
+}
 
+/* ---- Page Transition ---- */
+.page-transition-wrapper {
+  animation: page-fade-in 260ms var(--ease-reveal) forwards;
+}
+@keyframes page-fade-in {
+  0% {
+    opacity: 0.5;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Sticker Slap Animation for Hero Highlight ---- */
+@keyframes sticker-slap {
+  0% {
+    opacity: 0;
+    transform: scale(1.4) rotate(-9deg) translateY(-12px);
+    box-shadow: 12px 16px 24px rgba(0, 0, 0, 0.35);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.95) rotate(-1.5deg) translateY(2px);
+    box-shadow: 2px 2px 0 0 #000000;
+  }
+  80% {
+    transform: scale(1.03) rotate(-2.5deg) translateY(-1px);
+    box-shadow: 5px 5px 0 0 #000000;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-2deg) translateY(0);
+    box-shadow: 4px 4px 0 0 #000000;
+  }
+}
+
+.animate-sticker-slap {
+  display: inline-block;
+  will-change: transform, opacity, box-shadow;
+  animation: sticker-slap 650ms cubic-bezier(0.2, 0.9, 0.3, 1.2) forwards;
+  animation-delay: 380ms;
+  opacity: 0;
+  transition: transform var(--duration-interaction) var(--ease-spring),
+              box-shadow var(--duration-interaction) var(--ease-spring);
+}
+.animate-sticker-slap:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow: 6px 6px 0 0 #000000 !important;
+}
+
+@keyframes neo-float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+.neo-float { animation: neo-float 6s ease-in-out infinite; }
+
+/* ---- Hero Rolling Swap Animation ---- */
+@keyframes hero-swap {
+  0% {
+    opacity: 0.2;
+    transform: translateY(12px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-hero-swap {
+  animation: hero-swap 360ms var(--ease-reveal) forwards;
+}
+
+@keyframes cta-swap {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-cta-swap {
+  animation: cta-swap 280ms var(--ease-reveal) forwards;
+}
+
+/* ---- Accessibility (prefers-reduced-motion) ---- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .neo-float { animation: none; }
-  .neo-btn, .neo-press { transition: none; }
+  .neo-float,
+  .animate-marquee,
+  .page-transition-wrapper,
+  .animate-sticker-slap,
+  .animate-hero-swap,
+  .animate-cta-swap {
+    animation: none !important;
+  }
+  .animate-sticker-slap {
+    opacity: 1 !important;
+    transform: rotate(-2deg) !important;
+    box-shadow: 4px 4px 0 0 #000000 !important;
+  }
+  .neo-btn,
+  .neo-press,
+  .neo-card-hover,
+  .neo-tag {
+    transition: none !important;
+  }
 }

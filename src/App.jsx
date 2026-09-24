@@ -13,6 +13,8 @@ import Sources from './pages/Sources.jsx'
 import Setlist from './pages/Setlist.jsx'
 import NotFound from './pages/NotFound.jsx'
 
+import PageTransition from './motion/PageTransition.jsx'
+
 function ScrollToTop() {
   const { pathname } = useLocation()
   useEffect(() => {
@@ -27,18 +29,20 @@ export default function App() {
       <ScrollToTop />
       <Navbar />
       <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/rankings" element={<Rankings />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/sources" element={<Sources />} />
-          <Route path="/setlist" element={<Setlist />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <PageTransition>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/create" element={<Create />} />
+            <Route path="/rankings" element={<Rankings />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/sources" element={<Sources />} />
+            <Route path="/setlist" element={<Setlist />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </PageTransition>
       </main>
       <Footer />
     </div>

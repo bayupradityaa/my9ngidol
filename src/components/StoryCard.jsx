@@ -9,10 +9,10 @@ export const STORY_W = 1080
 export const STORY_H = 1920
 const CENTER_INDEX = 4
 
-const StoryCard = forwardRef(function StoryCard({ picks = [], title }, ref) {
+const StoryCard = forwardRef(function StoryCard({ picks = [], title, brandTitle = 'My 9 Member' }, ref) {
   const { t } = useLanguage()
   const slots = Array.from({ length: 9 }, (_, i) => picks[i] || null)
-  const heading = title || 'MY 9 NGIDOL'
+  const heading = title || 'MY 9 OSHI'
 
   return (
     <div
@@ -33,7 +33,7 @@ const StoryCard = forwardRef(function StoryCard({ picks = [], title }, ref) {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <span style={{ fontFamily: '"Archivo Black", sans-serif', fontSize: '52px', letterSpacing: '-1px' }}>
-          My 9 Ngidol
+          {brandTitle}
         </span>
         <span
           style={{

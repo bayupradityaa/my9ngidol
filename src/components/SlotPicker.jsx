@@ -5,9 +5,8 @@ import { MemberAvatar } from './MemberCard.jsx'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 /**
- * Modal picker for a single formation slot. Members already placed in OTHER
- * slots are disabled (no duplicates); the member currently in this slot is
- * highlighted. Background-safe: locks body scroll, closes on Escape/backdrop.
+ * Modal picker for a single formation slot.
+ * Upgraded with smooth neobrutalist backdrop and tactile spring slide-up.
  */
 export default function SlotPicker({ slotIndex, usedIds, currentId, onPick, onClear, onClose }) {
   const { t } = useLanguage()
@@ -39,21 +38,30 @@ export default function SlotPicker({ slotIndex, usedIds, currentId, onPick, onCl
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex items-end justify-center sm:items-center"
+      className="fixed inset-0 z-[200] flex items-end justify-center sm:items-center p-0 sm:p-4"
       role="dialog"
       aria-modal="true"
       aria-label={`${t('create.pickFor')} — ${t('create.slot')} ${slotIndex + 1}`}
     >
-      <div className="absolute inset-0 bg-black/60" onClick={onClose} aria-hidden="true" />
-
+      {/* Backdrop */}
       <div
-        className="neo-border neo-shadow-xl relative flex max-h-[85vh] w-full flex-col sm:max-w-xl"
-        style={{ backgroundColor: 'var(--neo-surface)' }}
+        className="fixed inset-0 bg-black/60 transition-opacity duration-200"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+
+      {/* Modal Dialog Card */}
+      <div
+        className="neo-border neo-shadow-xl relative flex max-h-[85vh] w-full flex-col sm:max-w-xl transition-all duration-200 transform translate-y-0"
+        style={{
+          backgroundColor: 'var(--neo-surface)',
+          animation: 'slotpicker-up 240ms var(--ease-reveal) forwards',
+        }}
       >
         {/* Header */}
         <div className="flex items-center justify-between gap-3 border-b-[3px] border-black px-4 py-3">
           <div className="flex items-center gap-2">
-            <span className="neo-border flex h-8 w-8 items-center justify-center bg-neo-yellow font-display text-black">
+            <span className="neo-border flex h-8 w-8 items-center justify-center bg-neo-yellow font-display text-black shadow-[2px_2px_0_0_#000]">
               {slotIndex + 1}
             </span>
             <span className="font-display text-lg">{t('create.pickFor')}</span>
@@ -85,7 +93,7 @@ export default function SlotPicker({ slotIndex, usedIds, currentId, onPick, onCl
             <button
               type="button"
               onClick={() => setTeamFilter('all')}
-              className="neo-border neo-press px-3 py-1.5 text-xs font-bold"
+              className="neo-border neo-press px-3 py-1.5 text-xs font-bold transition-colors duration-150"
               style={{ backgroundColor: teamFilter === 'all' ? '#FFEB3B' : 'var(--neo-surface)' }}
             >
               {t('create.all')}
@@ -95,7 +103,7 @@ export default function SlotPicker({ slotIndex, usedIds, currentId, onPick, onCl
                 key={team.value}
                 type="button"
                 onClick={() => setTeamFilter(team.value)}
-                className="neo-border neo-press px-3 py-1.5 text-xs font-bold"
+                className="neo-border neo-press px-3 py-1.5 text-xs font-bold transition-colors duration-150"
                 style={{ backgroundColor: teamFilter === team.value ? '#FFEB3B' : 'var(--neo-surface)' }}
               >
                 {team.label}
@@ -119,7 +127,7 @@ export default function SlotPicker({ slotIndex, usedIds, currentId, onPick, onCl
                   disabled={usedElsewhere}
                   onClick={() => onPick(m.id)}
                   aria-label={m.name}
-                  className="neo-card neo-press relative flex flex-col overflow-hidden text-left disabled:cursor-not-allowed disabled:opacity-40"
+                  className="neo-card neo-press group relative flex flex-col overflow-hidden text-left disabled:cursor-not-allowed disabled:opacity-40"
                   style={isCurrent ? { outline: '3px solid var(--neo-line)', outlineOffset: '2px' } : undefined}
                 >
                   {usedElsewhere && (
@@ -132,7 +140,9 @@ export default function SlotPicker({ slotIndex, usedIds, currentId, onPick, onCl
                       <Check size={14} strokeWidth={3} />
                     </span>
                   )}
-                  <MemberAvatar member={m} className="aspect-square w-full text-3xl" />
+                  <div className="aspect-square w-full overflow-hidden">
+                    <MemberAvatar member={m} className="h-full w-full text-3xl transition-transform duration-200 group-hover:scale-105" />
+                  </div>
                   <span className="truncate border-t-[3px] border-black px-2 py-1.5 font-display text-xs">
                     {m.name}
                   </span>
@@ -156,6 +166,13 @@ export default function SlotPicker({ slotIndex, usedIds, currentId, onPick, onCl
           </div>
         )}
       </div>
+
+      <style>{`
+        @keyframes slotpicker-up {
+          0% { transform: translateY(24px) scale(0.98); opacity: 0; }
+          100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+      `}</style>
     </div>
   )
 }

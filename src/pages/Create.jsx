@@ -8,6 +8,7 @@ import SectionHeading from '../components/SectionHeading.jsx'
 import FormationGrid from '../components/FormationGrid.jsx'
 import SlotPicker from '../components/SlotPicker.jsx'
 import StoryCard from '../components/StoryCard.jsx'
+import Reveal from '../motion/Reveal.jsx'
 import { submitPicks, incrementDownloadCount } from '../lib/firebase.js'
 
 const MAX = 9
@@ -155,10 +156,12 @@ export default function Create() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-10">
-      <SectionHeading eyebrow="CREATE" eyebrowColor="#FF5252" title={t('create.title')} subtitle={t('create.subtitle')} align="center" />
+      <Reveal variant="fade-up" duration={400}>
+        <SectionHeading eyebrow="CREATE" eyebrowColor="#FF5252" title={t('create.title')} subtitle={t('create.subtitle')} align="center" />
+      </Reveal>
 
       {/* Helper actions */}
-      <div className="mt-6 flex flex-wrap justify-center gap-2">
+      <Reveal variant="fade-up" delay={120} duration={350} className="mt-6 flex flex-wrap justify-center gap-2">
         <NeoButton type="button" size="sm" onClick={shuffleNine} variant="teal">
           <Shuffle size={16} strokeWidth={3} />
           {t('create.shuffle')}
@@ -167,7 +170,7 @@ export default function Create() {
           <Trash2 size={16} strokeWidth={3} />
           {t('create.clear')}
         </NeoButton>
-      </div>
+      </Reveal>
 
       {/* Tap-a-slot instruction */}
       <div className="mt-8 flex flex-col items-center gap-1 text-center">
@@ -190,7 +193,7 @@ export default function Create() {
       {/* Primary + secondary actions */}
       <div className="mt-8 flex flex-col gap-3">
         <div className="grid gap-3 sm:grid-cols-2">
-          <NeoButton type="button" variant="red" size="lg" onClick={generate} disabled={busy || !isComplete}>
+          <NeoButton type="button" variant="red" size="lg" magnetic={true} onClick={generate} disabled={busy || !isComplete}>
             {busy ? <Loader2 size={18} strokeWidth={3} className="animate-spin" /> : <Download size={18} strokeWidth={3} />}
             {busy ? t('create.generating') : t('create.generate')}
           </NeoButton>

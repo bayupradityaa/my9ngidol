@@ -1,4 +1,6 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { useMagnetic } from '../motion/useMagnetic.js'
 
 const VARIANTS = {
   yellow: 'bg-neo-yellow text-black',
@@ -7,6 +9,7 @@ const VARIANTS = {
   teal: 'bg-neo-teal text-black',
   coral: 'bg-neo-coral text-black',
   ink: 'bg-black text-white',
+  paper: 'bg-white text-black dark:bg-[#2a2833] dark:text-white',
   surface: '', // uses .neo-btn defaults (themeable surface)
 }
 
@@ -22,27 +25,32 @@ export default function NeoButton({
   size = 'md',
   to,
   href,
+  magnetic = false,
   className = '',
   ...props
 }) {
+  const magneticRef = useMagnetic({ maxDistance: size === 'lg' ? 6 : 4, strength: 0.25 })
+  const fallbackRef = useRef(null)
+  const ref = magnetic ? magneticRef : fallbackRef
+
   const classes = `neo-btn ${VARIANTS[variant] || ''} ${SIZES[size] || ''} ${className}`.trim()
 
   if (to) {
     return (
-      <Link to={to} className={classes} {...props}>
+      <Link ref={ref} to={to} className={classes} {...props}>
         {children}
       </Link>
     )
   }
   if (href) {
     return (
-      <a href={href} className={classes} target="_blank" rel="noopener noreferrer" {...props}>
+      <a ref={ref} href={href} className={classes} target="_blank" rel="noopener noreferrer" {...props}>
         {children}
       </a>
     )
   }
   return (
-    <button className={classes} {...props}>
+    <button ref={ref} className={classes} {...props}>
       {children}
     </button>
   )
