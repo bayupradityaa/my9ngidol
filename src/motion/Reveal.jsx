@@ -11,7 +11,7 @@ export default function Reveal({
   as: Component = 'div',
   variant = 'fade-up',
   delay = 0,
-  duration = 400,
+  duration = 750,
   threshold = 0.05,
   rootMargin = '0px 0px -20px 0px',
   className = '',
@@ -34,28 +34,28 @@ export default function Reveal({
       case 'clip-up':
       case 'slide-up':
         return {
-          transform: inView ? 'translateY(0)' : 'translateY(22px)',
+          transform: inView ? 'translateY(0)' : 'translateY(32px)',
           opacity: inView ? 1 : 0,
         }
       case 'pop':
         return {
-          transform: inView ? 'scale(1)' : 'scale(0.95)',
+          transform: inView ? 'scale(1)' : 'scale(0.92)',
           opacity: inView ? 1 : 0,
         }
       case 'slide-left':
         return {
-          transform: inView ? 'translateX(0)' : 'translateX(24px)',
+          transform: inView ? 'translateX(0)' : 'translateX(32px)',
           opacity: inView ? 1 : 0,
         }
       case 'slide-right':
         return {
-          transform: inView ? 'translateX(0)' : 'translateX(-24px)',
+          transform: inView ? 'translateX(0)' : 'translateX(-32px)',
           opacity: inView ? 1 : 0,
         }
       case 'fade-up':
       default:
         return {
-          transform: inView ? 'translateY(0)' : 'translateY(18px)',
+          transform: inView ? 'translateY(0)' : 'translateY(28px)',
           opacity: inView ? 1 : 0,
         }
     }

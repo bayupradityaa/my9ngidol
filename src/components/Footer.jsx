@@ -19,9 +19,9 @@ export default function Footer() {
     { to: '/contact', label: t('footer.contact') },
   ]
   const socials = [
-    { href: '#', label: 'X (Twitter)', Icon: Twitter },
-    { href: '#', label: 'Instagram', Icon: Instagram },
-    { href: '#', label: 'GitHub', Icon: Github },
+    { href: 'https://www.instagram.com/bayuupradityaa', label: 'Instagram', Icon: Instagram },
+    { href: 'https://x.com/bayu_pradityaa', label: 'X (Twitter)', Icon: Twitter },
+    { href: 'https://github.com/bayupradityaa', label: 'GitHub', Icon: Github },
   ]
 
   return (
@@ -64,7 +64,18 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="mb-3 font-display text-sm uppercase tracking-widest">{t('footer.connect')}</h3>
+          <h3 className="mb-1 font-display text-sm uppercase tracking-widest">{t('footer.connect')}</h3>
+          <p className="mb-3 text-xs opacity-75">
+            Dev:{' '}
+            <a
+              href="https://github.com/bayupradityaa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold underline underline-offset-2 hover:opacity-100"
+            >
+              Bayu Praditya
+            </a>
+          </p>
           <div className="flex gap-2">
             {socials.map(({ href, label, Icon }) => (
               <a
@@ -85,7 +96,17 @@ export default function Footer() {
       <div className="border-t-[3px] border-black px-4 py-5">
         <div className="mx-auto max-w-6xl flex flex-col gap-3">
           <p className="text-xs opacity-70">{t('footer.disclaimer')}</p>
-          <p className="text-xs font-bold">{t('footer.copyright')}</p>
+          <p className="text-xs font-bold">
+            {t('footer.copyright')} • Dev by{' '}
+            <a
+              href="https://github.com/bayupradityaa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-2 underline-offset-2 hover:opacity-80"
+            >
+              Bayu Praditya
+            </a>
+          </p>
         </div>
       </div>
     </footer>

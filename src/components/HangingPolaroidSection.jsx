@@ -68,7 +68,7 @@ export default function HangingPolaroidSection() {
 
       <div className="relative mx-auto max-w-6xl px-4">
         {/* Section Header */}
-        <Reveal variant="fade-up" duration={400} className="mb-10 text-center">
+        <Reveal variant="fade-up" duration={750} className="mb-10 text-center">
           <span className="neo-border neo-tag bg-neo-yellow text-xs font-bold uppercase tracking-widest text-black shadow-[2px_2px_0_0_#000]">
             {t('finalCta.tag') || 'KREASI FORMAT PNG • SHAREABLE'}
           </span>

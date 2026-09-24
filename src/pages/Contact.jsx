@@ -1,4 +1,4 @@
-import { Mail } from 'lucide-react'
+import { Mail, Instagram, Twitter, Github } from 'lucide-react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import PageShell, { P } from '../components/PageShell.jsx'
 import NeoButton from '../components/NeoButton.jsx'
@@ -23,7 +23,24 @@ export default function Contact() {
           {t('pages.contact.email')}
         </NeoButton>
       </div>
-      <P>{t('pages.contact.social')}</P>
+
+      <div className="mt-8 flex flex-col gap-3">
+        <h3 className="font-display text-base uppercase tracking-wider">Social Media Developer</h3>
+        <div className="flex flex-wrap gap-2.5">
+          <NeoButton href="https://www.instagram.com/bayuupradityaa" size="sm" variant="coral">
+            <Instagram size={16} strokeWidth={2.5} />
+            Instagram
+          </NeoButton>
+          <NeoButton href="https://x.com/bayu_pradityaa" size="sm" variant="default">
+            <Twitter size={16} strokeWidth={2.5} />
+            X (Twitter)
+          </NeoButton>
+          <NeoButton href="https://github.com/bayupradityaa" size="sm" variant="teal">
+            <Github size={16} strokeWidth={2.5} />
+            GitHub
+          </NeoButton>
+        </div>
+      </div>
     </PageShell>
   )
 }

@@ -69,13 +69,13 @@ export default function Landing() {
         <div className="neo-dots pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 md:grid-cols-2 md:py-20">
           <div className="flex flex-col gap-6">
-            <Reveal variant="pop" delay={80} duration={350}>
+            <Reveal variant="pop" delay={100} duration={650}>
               <p className="font-display text-sm uppercase tracking-[0.2em] opacity-70">
                 {t('hero.eyebrow')}
               </p>
             </Reveal>
 
-            <Reveal variant="fade-up" delay={120} duration={850}>
+            <Reveal variant="fade-up" delay={180} duration={950}>
               <h1 className="font-display text-5xl leading-[1.05] sm:text-6xl md:text-6xl lg:text-7xl">
                 <span className="block">
                   {t('hero.titleA')}
@@ -87,14 +87,14 @@ export default function Landing() {
               </h1>
             </Reveal>
 
-            <Reveal variant="fade-up" delay={300} duration={600}>
+            <Reveal variant="fade-up" delay={340} duration={800}>
               <p className="max-w-lg text-lg opacity-85">
                 {t('hero.subtitle')}
               </p>
             </Reveal>
 
             {downloads !== null && (
-              <Reveal variant="pop" delay={480} duration={400}>
+              <Reveal variant="pop" delay={480} duration={700}>
                 <div
                   className="neo-border inline-flex w-fit items-center gap-2 bg-neo-teal px-3 py-2 text-black neo-shadow neo-press cursor-default"
                   title={t('hero.downloadsLabel')}
@@ -111,7 +111,7 @@ export default function Landing() {
             )}
 
             {/* ROLLING CTA BUTTONS */}
-            <Reveal variant="fade-up" delay={560} duration={450}>
+            <Reveal variant="fade-up" delay={560} duration={750}>
               <div
                 key={heroMode}
                 className="animate-cta-swap flex flex-col items-start gap-4"
@@ -164,7 +164,7 @@ export default function Landing() {
           </div>
 
           {/* Right: real example formation card + caption (ROLLING) */}
-          <Reveal variant="fade-up" delay={240} duration={550} className="mx-auto w-full max-w-sm">
+          <Reveal variant="fade-up" delay={260} duration={900} className="mx-auto w-full max-w-sm">
             <div
               onMouseEnter={() => setIsHeroPaused(true)}
               onMouseLeave={() => setIsHeroPaused(false)}
@@ -217,11 +217,11 @@ export default function Landing() {
 
       {/* HOW IT WORKS */}
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <Reveal variant="fade-up" duration={400}>
+        <Reveal variant="fade-up" duration={750}>
           <SectionHeading eyebrow="01" title={t('how.title')} subtitle={t('how.subtitle')} align="center" />
         </Reveal>
 
-        <StaggerGroup staggerMs={100} duration={420} className="mt-10 grid gap-6 md:grid-cols-3">
+        <StaggerGroup staggerMs={110} duration={720} className="mt-10 grid gap-6 md:grid-cols-3">
           {steps.map((s, i) => (
             <NeoCard key={i} interactive={true} className="flex flex-col gap-3 p-6 group">
               <span
@@ -241,7 +241,7 @@ export default function Landing() {
       <section className="border-y-[3px] border-black" style={{ backgroundColor: 'var(--neo-muted)' }}>
         <div className="mx-auto max-w-6xl px-4 py-16">
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <Reveal variant="fade-up" duration={400}>
+            <Reveal variant="fade-up" duration={750}>
               <SectionHeading
                 eyebrow={<span className="flex items-center gap-1"><Trophy size={12} strokeWidth={3} /> TOP 9</span>}
                 eyebrowColor="#FFDB58"
@@ -249,7 +249,7 @@ export default function Landing() {
                 subtitle={t('trending.subtitle')}
               />
             </Reveal>
-            <Reveal variant="fade-up" delay={150}>
+            <Reveal variant="fade-up" delay={180} duration={700}>
               <NeoButton to="/rankings" size="sm" magnetic={true}>
                 {t('trending.viewAll')}
                 <ArrowRight size={16} strokeWidth={3} />
@@ -260,7 +260,7 @@ export default function Landing() {
           {rows.length === 0 ? (
             <NeoCard className="mt-8 p-6 text-center font-bold">{t('trending.empty')}</NeoCard>
           ) : (
-            <StaggerGroup staggerMs={50} duration={380} className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <StaggerGroup staggerMs={70} duration={650} className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {rows.map((r) => (
                 <div
                   key={r.member.id}
@@ -296,10 +296,10 @@ export default function Landing() {
 
       {/* COMMUNITY CREATIONS (replaces SaaS testimonials) */}
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <Reveal variant="fade-up" duration={400}>
+        <Reveal variant="fade-up" duration={750}>
           <SectionHeading eyebrow="02" eyebrowColor="#4ECDC4" title={t('community.title')} subtitle={t('community.subtitle')} align="center" />
         </Reveal>
-        <StaggerGroup staggerMs={110} duration={420} className="mt-10 grid gap-6 md:grid-cols-3">
+        <StaggerGroup staggerMs={130} duration={750} className="mt-10 grid gap-6 md:grid-cols-3">
           {creations.map((c, i) => (
             <div key={i} className="neo-card-hover flex flex-col gap-3 group">
               <div className="neo-border bg-black px-3 py-2 transition-colors duration-200 group-hover:bg-neo-red">
