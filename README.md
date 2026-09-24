@@ -224,6 +224,7 @@ Di bagian **Environment variables** sebelum deploy, tambahkan pasangan berikut
 | `VITE_FIREBASE_STORAGE_BUCKET` | nilai storageBucket |
 | `VITE_FIREBASE_MESSAGING_SENDER_ID` | nilai messagingSenderId |
 | `VITE_FIREBASE_APP_ID` | nilai appId |
+| `VITE_FIREBASE_MEASUREMENT_ID` | nilai measurementId (opsional, untuk Google Analytics) |
 
 (Opsional) `VITE_MEMBER_PHOTO_BASE` — isi dengan URL publik R2/CDN kalau foto member
 nanti disajikan dari sana. Kalau dibiarkan kosong, foto dibaca dari folder `/members`.

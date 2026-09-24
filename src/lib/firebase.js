@@ -25,6 +25,7 @@ const config = {
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 }
 
 export const isFirebaseEnabled = Boolean(config.apiKey && config.projectId)
@@ -34,6 +35,16 @@ if (isFirebaseEnabled) {
   try {
     const app = initializeApp(config)
     db = getFirestore(app)
+    // Google Analytics (optional): lazy-init only when the browser supports it.
+    if (config.measurementId) {
+      import('firebase/analytics')
+        .then(({ getAnalytics, isSupported }) =>
+          isSupported().then((ok) => {
+            if (ok) getAnalytics(app)
+          }),
+        )
+        .catch(() => {})
+    }
   } catch (err) {
     console.warn('[9oshi] Firebase init failed, using local fallback:', err)
     db = null
