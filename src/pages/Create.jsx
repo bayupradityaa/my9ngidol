@@ -8,7 +8,7 @@ import SectionHeading from '../components/SectionHeading.jsx'
 import FormationGrid from '../components/FormationGrid.jsx'
 import SlotPicker from '../components/SlotPicker.jsx'
 import StoryCard from '../components/StoryCard.jsx'
-import { submitPicks } from '../lib/firebase.js'
+import { submitPicks, incrementDownloadCount } from '../lib/firebase.js'
 
 const MAX = 9
 const SLOTS_KEY = '9oshi:slots'
@@ -111,6 +111,8 @@ export default function Create() {
       a.href = url
       a.download = 'my9ngidol-story.png'
       a.click()
+      // One successful download = one more formation created (global counter).
+      incrementDownloadCount()
     } catch (err) {
       console.error('[9oshi] generate failed:', err)
       alert('Gagal membuat gambar: ' + err.message)

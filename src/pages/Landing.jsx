@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  MousePointerClick, LayoutGrid, Share2, Trophy, ArrowRight, ArrowUpRight, TrendingUp,
+  MousePointerClick, LayoutGrid, Share2, Trophy, ArrowRight, ArrowUpRight, TrendingUp, Users,
 } from 'lucide-react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { useTopMembers } from '../hooks/useTopMembers.js'
@@ -9,6 +10,7 @@ import NeoCard from '../components/NeoCard.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import NineGrid from '../components/NineGrid.jsx'
 import { members, getTeamLabel } from '../data/members.js'
+import { getDownloadCount } from '../lib/firebase.js'
 
 const YEAR = new Date().getFullYear()
 // A fixed, recognizable example formation for the hero (first 9 of the roster).
@@ -17,6 +19,18 @@ const EXAMPLE = members.slice(0, 9)
 export default function Landing() {
   const { t, lang } = useLanguage()
   const { rows } = useTopMembers(9)
+
+  // Global "formations created" counter — goes up by one on every download.
+  const [downloads, setDownloads] = useState(null)
+  useEffect(() => {
+    let mounted = true
+    getDownloadCount().then(({ count }) => {
+      if (mounted) setDownloads(count)
+    })
+    return () => {
+      mounted = false
+    }
+  }, [])
 
   const steps = [
     { Icon: MousePointerClick, t: t('how.s1t'), d: t('how.s1d'), color: '#FFEB3B' },
@@ -50,6 +64,20 @@ export default function Landing() {
               <span className="block">{t('hero.titleB')}</span>
             </h1>
             <p className="max-w-lg text-lg opacity-85">{t('hero.subtitle')}</p>
+            {downloads !== null && (
+              <div
+                className="neo-border inline-flex w-fit items-center gap-2 bg-neo-teal px-3 py-2 text-black neo-shadow neo-press cursor-default"
+                title={t('hero.downloadsLabel')}
+              >
+                <Users size={16} strokeWidth={3} />
+                <span className="font-display text-base leading-none">
+                  {downloads.toLocaleString(lang === 'id' ? 'id-ID' : 'en-US')}
+                </span>
+                <span className="text-xs font-bold uppercase tracking-wide">
+                  {t('hero.downloadsLabel')}
+                </span>
+              </div>
+            )}
             <div className="flex flex-col items-start gap-4">
               <NeoButton to="/create" variant="red" size="lg" className="w-full sm:w-auto">
                 {t('hero.ctaPrimary')}

@@ -93,6 +93,12 @@ service cloud.firestore {
       allow write: if request.resource.data.count is number
                    && request.resource.data.count >= 0;
     }
+    match /meta/{docId} {
+      // Penghitung global (misal jumlah formasi yang sudah dibuat)
+      allow read: if true;
+      allow write: if request.resource.data.count is number
+                   && request.resource.data.count >= 0;
+    }
   }
 }
 ```

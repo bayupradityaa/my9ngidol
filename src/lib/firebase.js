@@ -8,11 +8,13 @@ import {
   getFirestore,
   collection,
   doc,
+  getDoc,
   getDocs,
   query,
   orderBy,
   limit as fbLimit,
   increment,
+  setDoc,
   writeBatch,
 } from 'firebase/firestore'
 
@@ -40,6 +42,8 @@ if (isFirebaseEnabled) {
 
 const COLLECTION = 'memberStats'
 const LOCAL_KEY = '9oshi:stats'
+const COUNTER_DOC = 'meta/downloads'
+const COUNTER_LOCAL_KEY = '9oshi:downloads'
 
 function readLocal() {
   try {
@@ -76,6 +80,34 @@ export async function submitPicks(memberIds = []) {
   })
   writeLocal(map)
   return { ok: true, source: 'local' }
+}
+
+/** Increment the global "formations created" counter (one per successful download). */
+export async function incrementDownloadCount() {
+  if (db) {
+    try {
+      await setDoc(doc(db, COUNTER_DOC), { count: increment(1) }, { merge: true })
+      return { ok: true, source: 'live' }
+    } catch (err) {
+      console.warn('[9oshi] incrementDownloadCount failed, falling back to local:', err)
+    }
+  }
+  const n = Number(localStorage.getItem(COUNTER_LOCAL_KEY) || 0) + 1
+  localStorage.setItem(COUNTER_LOCAL_KEY, String(n))
+  return { ok: true, source: 'local', count: n }
+}
+
+/** Read the current "formations created" total. Returns { count, source }. */
+export async function getDownloadCount() {
+  if (db) {
+    try {
+      const snap = await getDoc(doc(db, COUNTER_DOC))
+      return { count: snap.exists() ? snap.data().count || 0 : 0, source: 'live' }
+    } catch (err) {
+      console.warn('[9oshi] getDownloadCount failed, falling back to local:', err)
+    }
+  }
+  return { count: Number(localStorage.getItem(COUNTER_LOCAL_KEY) || 0), source: 'local' }
 }
 
 /** Return [{ id, count }] sorted desc, limited to `max`. */

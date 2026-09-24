@@ -23,6 +23,7 @@ export const dict = {
       ctaSecondary: 'Jelajahi peringkat',
       exampleLabel: 'CONTOH',
       caption: 'Sembilan oshi. Sepotong dirimu.',
+      downloadsLabel: 'formasi sudah dibuat',
     },
     how: {
       title: 'Cara kerjanya',
@@ -184,6 +185,7 @@ export const dict = {
       ctaSecondary: 'Explore the rankings',
       exampleLabel: 'EXAMPLE',
       caption: 'Nine oshi. A little piece of you.',
+      downloadsLabel: 'formations created',
     },
     how: {
       title: 'How it works',
