@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* Class-based dark mode (toggled by adding `.dark` on <html>) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---- Design tokens exposed to Tailwind utilities ---- */
+@theme {
+  --color-neo-yellow: #ffeb3b;
+  --color-neo-red: #ff5252;
+  --color-neo-blue: #2196f3;
+  --color-neo-mustard: #ffdb58;
+  --color-neo-coral: #ff6b6b;
+  --color-neo-teal: #4ecdc4;
+  --color-neo-ink: #000000;
+  --color-neo-paper: #fffef2;
+
+  --font-display: "Archivo Black", "Arial Black", system-ui, sans-serif;
+  --font-body: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---- Themeable surface variables (swap in dark) ---- */
+:root {
+  --neo-border-w: 3px;
+  --neo-shadow-off: 4px;
+  --neo-line: #000000;
+  --neo-shadow: #000000;
+  --neo-bg: #fffef2;
+  --neo-fg: #000000;
+  --neo-surface: #ffffff;
+  --neo-muted: #f2f1ea;
+}
+.dark {
+  --neo-bg: #17161d;
+  --neo-fg: #ffffff;
+  --neo-surface: #2a2833;
+  --neo-muted: #221f2b;
+  /* line + shadow stay pure black: darker than dark bg, so still visible */
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background-color: var(--neo-bg);
+  color: var(--neo-fg);
+  font-family: var(--font-body);
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+h1, h2, h3, .font-display { font-family: var(--font-display); font-weight: 900; }
+
+:focus-visible { outline: 3px solid var(--color-neo-blue); outline-offset: 2px; }
+
+/* ---- Neobrutalism primitives ---- */
+.neo-border { border: var(--neo-border-w) solid var(--neo-line); }
+.neo-shadow { box-shadow: var(--neo-shadow-off) var(--neo-shadow-off) 0 0 var(--neo-shadow); }
+.neo-shadow-lg { box-shadow: 6px 6px 0 0 var(--neo-shadow); }
+.neo-shadow-xl { box-shadow: 9px 9px 0 0 var(--neo-shadow); }
+
+.neo-card {
+  border: var(--neo-border-w) solid var(--neo-line);
+  box-shadow: var(--neo-shadow-off) var(--neo-shadow-off) 0 0 var(--neo-shadow);
+  background-color: var(--neo-surface);
+}
+
+.neo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.75rem 1.15rem;
+  border: var(--neo-border-w) solid var(--neo-line);
+  box-shadow: var(--neo-shadow-off) var(--neo-shadow-off) 0 0 var(--neo-shadow);
+  background-color: var(--neo-surface);
+  color: var(--neo-fg);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+.neo-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 0 var(--neo-shadow); }
+.neo-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 0 var(--neo-shadow); }
+.neo-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: var(--neo-shadow-off) var(--neo-shadow-off) 0 0 var(--neo-shadow); }
+
+/* Press animation for any bordered/shadowed interactive element */
+.neo-press { transition: transform 0.12s ease, box-shadow 0.12s ease; cursor: pointer; }
+.neo-press:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 0 var(--neo-shadow); }
+.neo-press:active { transform: translate(2px, 2px); box-shadow: 0 0 0 0 var(--neo-shadow); }
+
+/* Rotated sticker label */
+.neo-tag {
+  display: inline-block;
+  border: var(--neo-border-w) solid var(--neo-line);
+  padding: 0.15rem 0.6rem;
+  font-weight: 700;
+  transform: rotate(-2deg);
+}
+
+/* Dotted backdrop for hero (flat, no gradient) */
+.neo-dots {
+  background-image: radial-gradient(var(--neo-line) 1.4px, transparent 1.4px);
+  background-size: 22px 22px;
+  opacity: 0.12;
+}
+
+@keyframes neo-float {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-10px) rotate(3deg); }
+}
+.neo-float { animation: neo-float 5s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .neo-float { animation: none; }
+  .neo-btn, .neo-press { transition: none; }
+}
