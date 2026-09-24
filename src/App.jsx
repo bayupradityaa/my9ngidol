@@ -10,6 +10,7 @@ import Privacy from './pages/Privacy.jsx'
 import Terms from './pages/Terms.jsx'
 import Contact from './pages/Contact.jsx'
 import Sources from './pages/Sources.jsx'
+import Setlist from './pages/Setlist.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 function ScrollToTop() {
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/sources" element={<Sources />} />
+          <Route path="/setlist" element={<Setlist />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

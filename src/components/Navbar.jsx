@@ -14,6 +14,7 @@ export default function Navbar() {
     { to: '/', label: t('nav.home'), end: true },
     { to: '/create', label: t('nav.create') },
     { to: '/rankings', label: t('nav.rankings') },
+    { to: '/setlist', label: t('nav.setlist'), soon: true },
     { to: '/about', label: t('nav.about') },
   ]
 
@@ -33,8 +34,20 @@ export default function Navbar() {
         {/* Desktop nav */}
         <div className="hidden items-center gap-1 md:flex">
           {links.map((l) => (
-            <NavLink key={l.to} to={l.to} end={l.end} className={linkClass}>
-              {l.label}
+            <NavLink
+              key={l.to}
+              to={l.to}
+              end={l.end}
+              className={(p) => `${linkClass(p)} ${l.soon ? 'hidden lg:inline-flex' : ''}`}
+            >
+              <span className="inline-flex items-center gap-1.5">
+                {l.label}
+                {l.soon && (
+                  <span className="neo-border bg-neo-coral px-1.5 py-0.5 text-[9px] font-bold leading-none text-black">
+                    {t('common.soon')}
+                  </span>
+                )}
+              </span>
             </NavLink>
           ))}
         </div>
@@ -72,9 +85,14 @@ export default function Navbar() {
                 to={l.to}
                 end={l.end}
                 onClick={() => setOpen(false)}
-                className="neo-border neo-press px-3 py-2 font-bold"
+                className="neo-border neo-press flex items-center justify-between gap-2 px-3 py-2 font-bold"
               >
-                {l.label}
+                <span>{l.label}</span>
+                {l.soon && (
+                  <span className="neo-border bg-neo-coral px-1.5 py-0.5 text-[10px] font-bold leading-none text-black">
+                    {t('common.soon')}
+                  </span>
+                )}
               </NavLink>
             ))}
             <div className="mt-2 flex items-center justify-between gap-2">

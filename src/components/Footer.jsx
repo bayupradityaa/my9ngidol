@@ -9,6 +9,7 @@ export default function Footer() {
     { to: '/', label: t('nav.home') },
     { to: '/create', label: t('nav.create') },
     { to: '/rankings', label: t('nav.rankings') },
+    { to: '/setlist', label: t('nav.setlist') },
     { to: '/about', label: t('nav.about') },
   ]
   const legal = [

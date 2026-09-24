@@ -183,6 +183,21 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* SETLIST TEASER — coming soon */}
+      <section className="border-t-[3px] border-black" style={{ backgroundColor: 'var(--neo-muted)' }}>
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-16 text-center">
+          <span className="neo-border neo-tag bg-neo-coral text-xs font-bold uppercase tracking-widest text-black">
+            {t('setlist.badge')}
+          </span>
+          <h2 className="font-display text-3xl leading-tight sm:text-4xl">{t('setlist.title')}</h2>
+          <p className="max-w-xl text-base font-bold opacity-80">{t('setlist.p1')}</p>
+          <NeoButton to="/setlist" size="lg">
+            {t('setlist.cta')}
+            <ArrowRight size={18} strokeWidth={3} />
+          </NeoButton>
+        </div>
+      </section>
+
       {/* FINAL CTA */}
       <section className="border-t-[3px] border-black bg-neo-yellow text-black">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 py-16 text-center">
