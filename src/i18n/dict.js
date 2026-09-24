@@ -54,9 +54,15 @@ export const dict = {
       c3: 'Tim Impian',
     },
     finalCta: {
+      tag: 'KREASI FORMAT PNG • SHAREABLE',
+      headline: 'Pilih & Pamerkan Formasi Favoritmu',
+      desc: 'Hasil kreasi otomatis berformat foto PNG siap posting ke Instagram Story, X, atau disimpan ke galeri.',
       title: 'Yang mana 9 oshi-mu?',
       subtitle: 'Cuma butuh semenit. Gratis. Nggak perlu daftar.',
       button: 'Susun sekarang',
+      oshiTab: '1. 9 Oshi (Tersedia)',
+      setlistTab: '2. 9 Setlist (Segera)',
+      swipeHint: '← Geser halus untuk melihat format berikutnya →',
     },
     footer: {
       tagline: 'Susun 9 oshi JKT48-mu jadi satu gambar.',
@@ -226,9 +232,15 @@ export const dict = {
       c3: 'Dream Team',
     },
     finalCta: {
+      tag: 'SHAREABLE PNG FORMATS',
+      headline: 'Pick & Showcase Your Favorite Lineup',
+      desc: 'Generated directly as shareable PNG images ready for your Instagram Story, X, or photo gallery.',
       title: 'Which 9 are your oshi?',
       subtitle: 'Takes a minute. Free. No sign-up.',
       button: 'Build it now',
+      oshiTab: '1. 9 Oshi (Live)',
+      setlistTab: '2. 9 Setlist (Soon)',
+      swipeHint: '← Swipe smoothly to view next format →',
     },
     footer: {
       tagline: 'Turn your 9 JKT48 oshi into one image.',

@@ -9,6 +9,7 @@ import NeoButton from '../components/NeoButton.jsx'
 import NeoCard from '../components/NeoCard.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import NineGrid from '../components/NineGrid.jsx'
+import HangingPolaroidSection from '../components/HangingPolaroidSection.jsx'
 import { members, getTeamLabel } from '../data/members.js'
 import { getDownloadCount } from '../lib/firebase.js'
 
@@ -183,38 +184,8 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* SETLIST TEASER — coming soon */}
-      <section className="border-t-[3px] border-black" style={{ backgroundColor: 'var(--neo-muted)' }}>
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-16 text-center">
-          <span className="neo-border neo-tag bg-neo-coral text-xs font-bold uppercase tracking-widest text-black">
-            {t('setlist.badge')}
-          </span>
-          <h2 className="font-display text-3xl leading-tight sm:text-4xl">{t('setlist.title')}</h2>
-          <p className="max-w-xl text-base font-bold opacity-80">{t('setlist.p1')}</p>
-          <NeoButton to="/setlist" size="lg">
-            {t('setlist.cta')}
-            <ArrowRight size={18} strokeWidth={3} />
-          </NeoButton>
-        </div>
-      </section>
-
-      {/* FINAL CTA */}
-      <section className="border-t-[3px] border-black bg-neo-yellow text-black">
-        <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 py-16 text-center">
-          <span className="neo-border neo-tag bg-white text-xs font-bold uppercase tracking-widest">
-            {t('hero.badge')}
-          </span>
-          <h2 className="font-display text-4xl leading-tight sm:text-5xl">{t('finalCta.title')}</h2>
-          <p className="max-w-xl text-lg font-bold opacity-80">{t('finalCta.subtitle')}</p>
-          <NeoButton to="/create" variant="ink" size="lg">
-            {t('finalCta.button')}
-            <ArrowRight size={18} strokeWidth={3} />
-          </NeoButton>
-          <Link to="/rankings" className="text-sm font-bold underline decoration-2 underline-offset-4">
-            {t('hero.ctaSecondary')}
-          </Link>
-        </div>
-      </section>
+      {/* UNIFIED HANGING POLAROIDS SECTION (9 OSHI & 9 SETLIST PREVIEWS) */}
+      <HangingPolaroidSection />
     </div>
   )
 }
